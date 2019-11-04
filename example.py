@@ -3,7 +3,7 @@ from nertivia.client import *
 from nertivia.channel import *
 from nertivia.user import *
 import asyncio
-token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NTk0NDA0NjU3NjA1MzgyMTQ0IiwiaWF0IjoxNTcyMjI4NjkxMTAwfQ.P2Xzo-TssHRXRIF1_6ElfzupkKf103HndnKPXRHgojI" #YOUR TOKEN GOES HERE
+token = "TOKEN" #YOUR TOKEN GOES HERE
 
 client = Nertivia.client() #creates the client
 
