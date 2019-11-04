@@ -17,7 +17,7 @@ SOCKET_IP = "https://nertivia.supertiger.tk"
 class Nertivia(object):
     def __init__(self, client):
         self.client = client
-        with open('nertivia/constants.txt') as json_file:
+        with open('constants.txt') as json_file:
             data = json.load(json_file)
             for p in data['constants']:
                 self.token = p['token']
@@ -39,7 +39,7 @@ class Nertivia(object):
         data['constants'].append(
             {'token': token}
         )
-        with open('nertivia/constants.txt', 'w') as outfile:
+        with open('constants.txt', 'w') as outfile:
             json.dump(data, outfile)
 
         return client

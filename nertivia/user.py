@@ -6,7 +6,7 @@ import json
 
 class User(object):
     def __init__(self):
-        with open('nertivia/constants.txt') as json_file:
+        with open('constants.txt') as json_file:
             data = json.load(json_file)
             for p in data['constants']:
                 self.token = p['token']

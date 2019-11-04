@@ -21,7 +21,7 @@ class Message():
         self.author = message['message']['creator']['username'] + '@' + message['message']['creator']['tag']
         self.authorID = message['message']['creator']['uniqueID']
 
-        with open('nertivia/constants.txt') as json_file:
+        with open('constants.txt') as json_file:
             data = json.load(json_file)
             for p in data['constants']:
                 self.token = p['token']
