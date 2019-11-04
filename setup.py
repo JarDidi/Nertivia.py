@@ -2,7 +2,7 @@ from distutils.core import setup
 setup(
   name = 'nertivia',         # How you named your package folder (MyLib)
   packages = ['nertivia'],   # Chose the same as "name"
-  version = '0.1.0',      # Start with a small number and increase it with every change you make
+  version = '0.1.1',      # Start with a small number and increase it with every change you make
   license='MIT',        # Chose a license from here: https://help.github.com/articles/licensing-a-repository
   description = 'Python API Wrapper for Nertivia',   # Give a short description about your library
   author = 'Jared Galyan',                   # Type in your name
