@@ -1,7 +1,6 @@
 import requests 
 import json
 import asyncio
-import abc
 from nertivia.message import *
 
 URL = "https://supertiger.tk/api/messages/channels/"

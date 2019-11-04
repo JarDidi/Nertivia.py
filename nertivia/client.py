@@ -1,10 +1,7 @@
 import requests 
 import json
 import asyncio
-import abc
-import logging
 import socketio
-import json
 
 
 URL = "https://supertiger.tk/api/messages/channels/6594395172002336768"
