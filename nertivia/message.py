@@ -69,5 +69,4 @@ class Message():
     def changeStatus(token, status):
         data = {'status': status,
                 'tempID': 0}  
-        r = requests.post(url=URL_STA, headers=self.headers, data=json.dumps(data))
-        print(r.text)        
+        r = requests.post(url=URL_STA, headers=self.headers, data=json.dumps(data))      

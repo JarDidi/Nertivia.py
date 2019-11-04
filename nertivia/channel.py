@@ -30,7 +30,6 @@ class Channel(object):
         data = {'message': message,
                 'tempID': 0}  
         r = requests.post(url=str(URL + str(self._channel)), headers=self.headers, data=json.dumps(data))
-        print(r.json())
     
     def get_message(self, messageID):
         sid = Message.testRequest(self=self, channel=self._channel)
@@ -40,7 +39,6 @@ class Channel(object):
                     'Content-Type': 'application/json;charset=utf-8',
                     'Cookie': f'connect.sid={sid}' } 
         r = requests.get(url=str(URL_MSG + str(messageID) + '/channels/' + str(self._channel)), headers=headers1)
-        print(r.json())
         message = Message(r.json())
         return message
       
