@@ -6,19 +6,13 @@ import logging
 import socketio
 import json
 
-with open('nertivia/constants.txt') as json_file:
-    data = json.load(json_file)
-    for p in data['constants']:
-        token = p['token']
 
 URL = "https://supertiger.tk/api/messages/channels/6594395172002336768"
 URL_MSG = "https://supertiger.tk/api/messages/"
 
 SOCKET_IP = "https://nertivia.supertiger.tk"
 
-headers = {'Accept': 'text/plain',
-           'authorization': token,
-           'Content-Type': 'application/json;charset=utf-8'}
+
 
 
 
@@ -26,6 +20,15 @@ headers = {'Accept': 'text/plain',
 class Nertivia(object):
     def __init__(self, client):
         self.client = client
+        with open('nertivia/constants.txt') as json_file:
+            data = json.load(json_file)
+            for p in data['constants']:
+                self.token = p['token']
+
+        self.headers = {'Accept': 'text/plain',
+                'authorization': self.token,
+                'Content-Type': 'application/json;charset=utf-8'}
+
 
     def client():
         return socketio.Client()

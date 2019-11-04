@@ -7,14 +7,6 @@ URL = "https://supertiger.tk/api/messages/channels/"
 URL_MSG = "https://supertiger.tk/api/messages/"
 URL_STA = "https://supertiger.tk/api/settings/status"
 
-with open('nertivia/constants.txt') as json_file:
-    data = json.load(json_file)
-    for p in data['constants']:
-        token = p['token']
-
-headers = {'Accept': 'text/plain',
-           'authorization': token,
-           'Content-Type': 'application/json;charset=utf-8'}
 
 
 
@@ -28,6 +20,15 @@ class Message():
         self.authorName = message['message']['creator']['username']
         self.author = message['message']['creator']['username'] + '@' + message['message']['creator']['tag']
         self.authorID = message['message']['creator']['uniqueID']
+
+        with open('nertivia/constants.txt') as json_file:
+            data = json.load(json_file)
+            for p in data['constants']:
+                self.token = p['token']
+
+        self.headers = {'Accept': 'text/plain',
+                'authorization': self.token,
+                'Content-Type': 'application/json;charset=utf-8'}
 
     @property
     def _id(self):
@@ -48,10 +49,9 @@ class Message():
     @property
     def _author_id(self):
         return self.authorID
-    
-    @staticmethod
-    def testRequest(channel):
-        r = requests.get(url=str(URL + str(channel)), headers=headers)
+
+    def testRequest(self, channel):
+        r = requests.get(url=str(URL + str(channel)), headers=self.headers)
         return r.headers.get('set-cookie')
 
     def edit(self,channel, content):
@@ -61,7 +61,7 @@ class Message():
                 'tempID': 0}
                 
         headers1 = {'Accept': 'text/plain',
-                    'authorization': token,
+                    'authorization': self.token,
                     'Content-Type': 'application/json;charset=utf-8',
                     'Cookie': f'connect.sid={sid}' } 
         r = requests.patch(url=str(URL_MSG + str(self.id) + '/channels/' + str(channel)), headers=headers1, data=json.dumps(data))
@@ -69,5 +69,5 @@ class Message():
     def changeStatus(token, status):
         data = {'status': status,
                 'tempID': 0}  
-        r = requests.post(url=URL_STA, headers=headers, data=json.dumps(data))
+        r = requests.post(url=URL_STA, headers=self.headers, data=json.dumps(data))
         print(r.text)        

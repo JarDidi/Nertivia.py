@@ -2,16 +2,18 @@ import asyncio
 import requests
 import json
 
-with open('nertivia/constants.txt') as json_file:
-    data = json.load(json_file)
-    for p in data['constants']:
-        token = p['token']
+
 
 class User(object):
     def __init__(self):
-        headers = {'Accept': 'text/plain',
-                    'authorization': token,
-                    'Content-Type': 'application/json;charset=utf-8'}
+        with open('nertivia/constants.txt') as json_file:
+            data = json.load(json_file)
+            for p in data['constants']:
+                self.token = p['token']
+
+        self.headers = {'Accept': 'text/plain',
+                'authorization': self.token,
+                'Content-Type': 'application/json;charset=utf-8'}
         r1 = requests.get(url='https://supertiger.tk/api/user', headers=headers)
         dataa = r1.json()
         self.id = dataa['user']['uniqueID']
