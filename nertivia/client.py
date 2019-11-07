@@ -2,7 +2,7 @@ import requests
 import json
 import asyncio
 import socketio
-
+from nertivia.user import *
 
 URL = "https://supertiger.tk/api/messages/channels/6594395172002336768"
 URL_MSG = "https://supertiger.tk/api/messages/"
@@ -56,4 +56,7 @@ class Nertivia(object):
                 'Content-Type': 'application/json;charset=utf-8'}
         r1 = requests.get(url=f'https://supertiger.tk/api/user/{userID}', headers=headers)
         user = r1.json()
+
+        user = User(user)
+
         return user

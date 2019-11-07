@@ -20,7 +20,6 @@ def receiveMessage(message):
         elif '!user ' in str(m.content):
             userID = str(m.content).replace('!user ', '')
             user = nertivia.Nertivia.get_user(userID)
-            user = nertivia.User(user)
             c.send(f'{user.avatar_url} - {user.user}')
         else:
             c.send(f'{m.content} - {m.author}')
