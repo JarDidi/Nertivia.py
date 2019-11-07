@@ -17,6 +17,11 @@ def receiveMessage(message):
     if str(m.authorID) != str(6594404657605382144): #checking if user is the bot
         if str(m.content) == '!testcommand': #simple on message commands until I make @client.command()
             c.send('Command test')
+        elif '!user ' in str(m.content):
+            userID = str(m.content).replace('!user ', '')
+            user = nertivia.Nertivia.get_user(userID)
+            user = nertivia.User(user)
+            c.send(f'{user.avatar_url} - {user.user}')
         else:
             c.send(f'{m.content} - {m.author}')
     else:

@@ -43,3 +43,17 @@ class Nertivia(object):
             json.dump(data, outfile)
 
         return client
+
+    @staticmethod
+    def get_user(userID):
+        with open('constants.txt') as json_file:
+            data = json.load(json_file)
+            for p in data['constants']:
+                token = p['token']
+
+        headers = {'Accept': 'text/plain',
+                'authorization': token,
+                'Content-Type': 'application/json;charset=utf-8'}
+        r1 = requests.get(url=f'https://supertiger.tk/api/user/{userID}', headers=headers)
+        user = r1.json()
+        return user
