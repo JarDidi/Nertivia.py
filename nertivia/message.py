@@ -66,7 +66,7 @@ class Message():
                     'Cookie': f'connect.sid={sid}' } 
         r = requests.patch(url=str(URL_MSG + str(self.id) + '/channels/' + str(channel)), headers=headers1, data=json.dumps(data))
 
-    def changeStatus(token, status):
+    def changeStatus(self, token, status):
         data = {'status': status,
                 'tempID': 0}  
         r = requests.post(url=URL_STA, headers=self.headers, data=json.dumps(data))      

@@ -37,7 +37,8 @@ class Channel(object):
                     'authorization': self.token,
                     'Content-Type': 'application/json;charset=utf-8',
                     'Cookie': f'connect.sid={sid}' } 
-        r = requests.get(url=str(URL_MSG + str(messageID) + '/channels/' + str(self._channel)), headers=headers1)
+        r = requests.get(url=str(URL_MSG + '/channels/' + str(self._channel)), headers=headers1)
+        print(r.json())
         message = Message(r.json())
         return message
       

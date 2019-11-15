@@ -8,7 +8,7 @@ setup(
   author = 'Jared Galyan',                   # Type in your name
   author_email = 'jared@cyphernia.com',      # Type in your E-Mail
   url = 'https://github.com/JarDidi/Nertivia.py',   # Provide either the link to your github or to your website
-  download_url = 'https://github.com/JarDidi/Nertivia.py/archive/v0.1.6.tar.gz',    # I explain this later on
+  download_url = 'https://github.com/JarDidi/Nertivia.py/archive/v0.1.7.tar.gz',    # I explain this later on
   keywords = ['API Wrapper', 'SIMPLE', 'PYTHON'],   # Keywords that define your package best
   install_requires=[            # I get to this in a second
           'python-socketio',
