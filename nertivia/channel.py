@@ -39,7 +39,7 @@ class Channel(object):
                     'Cookie': f'connect.sid={sid}' } 
         r = requests.get(url=str(URL_MSG + '/channels/' + str(self._channel)), headers=headers1)
         print(r.json())
-        mes = list(filter(lambda x: x['messages']['messageID'] == messageID, r.json()))
+        mes = list(filter(lambda x: x['messageID'] == messageID, r.json()['messages']))
         print(mes)
         message = Message(mes)
         return message
