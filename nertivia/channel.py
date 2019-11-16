@@ -37,7 +37,7 @@ class Channel(object):
                     'authorization': self.token,
                     'Content-Type': 'application/json;charset=utf-8',
                     'Cookie': f'connect.sid={sid}' } 
-        r = requests.get(url=str(f'https://supertiger.tk/api/messages/channels/{self._channel}?continue={messageID}'), headers=headers1)
+        r = requests.get(url=str(f'https://supertiger.tk/api/messages/{messageID}/channels/{self._channel}'), headers=headers1)
         print(r.json())
         #mes = list(filter(lambda x: x['messageID'] == messageID, r.json()['messages']))
         message = Message(r.json())
