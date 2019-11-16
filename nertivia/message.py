@@ -50,12 +50,21 @@ class Message():
     def _author_id(self):
         return self.authorID
 
-    def testRequest(self, channel):
-        r = requests.get(url=str(URL + str(channel)), headers=self.headers)
+    @staticmethod
+    def testRequest(channel):
+        with open('constants.txt') as json_file:
+            data = json.load(json_file)
+            for p in data['constants']:
+                token = p['token']
+
+        headers = {'Accept': 'text/plain',
+                'authorization': token,
+                'Content-Type': 'application/json;charset=utf-8'}
+        r = requests.get(url=str(URL + str(channel)), headers=headers)
         return r.headers.get('set-cookie')
 
     def edit(self,channel, content):
-        sid = Message(self).testRequest(channel=channel)
+        sid = Message.testRequest(channel=channel)
         sid = sid.split('connect.sid=', 1)[1].strip('; Path=/; HttpOnly')
         data = {'message': content,
                 'tempID': 0}
