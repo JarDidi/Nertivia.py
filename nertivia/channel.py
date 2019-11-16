@@ -40,6 +40,7 @@ class Channel(object):
         r = requests.get(url=str(f'https://supertiger.tk/api/messages/{messageID}/channels/{self._channel}'), headers=headers1)
         print(r.json())
         #mes = list(filter(lambda x: x['messageID'] == messageID, r.json()['messages']))
-        message = Message(r.json())
+        mess = {'message': r.json()}
+        message = Message(mess)
         return message
       
