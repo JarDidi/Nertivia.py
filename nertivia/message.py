@@ -76,7 +76,7 @@ class Message():
         requests.patch(url=str(URL_MSG + str(self.id) + '/channels/' + str(channel)), headers=headers1, data=json.dumps(data))
 
     def delete(self, channel):
-        sid = Message(self).testRequest(channel=channel)
+        sid = Message.testRequest(channel=channel)
         sid = sid.split('connect.sid=', 1)[1].strip('; Path=/; HttpOnly')
                 
         headers1 = {'Accept': 'text/plain',

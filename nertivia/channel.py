@@ -31,7 +31,7 @@ class Channel(object):
         r = requests.post(url=str(URL + str(self._channel)), headers=self.headers, data=json.dumps(data))
     
     def get_message(self, messageID):
-        sid = Message.testRequest(self=self, channel=self._channel)
+        sid = Message.testRequest(channel=self._channel)
         sid = sid.split('connect.sid=', 1)[1].strip('; Path=/; HttpOnly')
         headers1 = {'Accept': 'text/plain',
                     'authorization': self.token,
