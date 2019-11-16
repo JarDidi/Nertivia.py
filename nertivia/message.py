@@ -55,7 +55,7 @@ class Message():
         return r.headers.get('set-cookie')
 
     def edit(self,channel, content):
-        sid = Message.testRequest(channel=channel)
+        sid = Message(self).testRequest(channel=channel)
         sid = sid.split('connect.sid=', 1)[1].strip('; Path=/; HttpOnly')
         data = {'message': content,
                 'tempID': 0}
@@ -64,7 +64,17 @@ class Message():
                     'authorization': self.token,
                     'Content-Type': 'application/json;charset=utf-8',
                     'Cookie': f'connect.sid={sid}' } 
-        r = requests.patch(url=str(URL_MSG + str(self.id) + '/channels/' + str(channel)), headers=headers1, data=json.dumps(data))
+        requests.patch(url=str(URL_MSG + str(self.id) + '/channels/' + str(channel)), headers=headers1, data=json.dumps(data))
+
+    def delete(self, channel):
+        sid = Message(self).testRequest(channel=channel)
+        sid = sid.split('connect.sid=', 1)[1].strip('; Path=/; HttpOnly')
+                
+        headers1 = {'Accept': 'text/plain',
+                    'authorization': self.token,
+                    'Content-Type': 'application/json;charset=utf-8',
+                    'Cookie': f'connect.sid={sid}' } 
+        requests.delete(url=str(URL_MSG + str(self.id) + '/channels/' + str(channel)), headers=headers1)
 
     def changeStatus(self, token, status):
         data = {'status': status,
